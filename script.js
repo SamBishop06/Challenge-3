@@ -33,13 +33,6 @@ function generatePassword() {
   let Uppercase = (confirm ("Press ok to use Uppercase") == true);
   let lowrcase = (confirm("Press ok to us lowercase") == true);
 
-  
-
-  
-  
-  
-  
-  
   return password;
   
 }
