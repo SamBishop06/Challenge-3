@@ -1,61 +1,39 @@
-// Assignment code here
 var generateBtn = document.querySelector("#generate");
 
+const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numbersChars = "123456789"; 
+const symbolChars = "!@#$%^&*+_?=";
+
+let includeLowercase = true;
+let includeUppercase = true;
+let includeNumbers = true;
+let includeSymbols = true;
 
 function generatePassword() {
-  console.log(Math.random);
-
-  const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
-  const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const numbersChars = "123456789"; 
-  const symbolChars = "!@#$%^&*+_?=";
-
   let allowedchars = "";
-   let password = "";
+  let password = "";
 
   allowedchars += includeLowercase ? lowercaseChars : "";
   allowedchars += includeUppercase ? uppercaseChars : "";
   allowedchars += includeSymbols ? symbolChars : "";
-  allowedchars += includeNumbers ? numbersChars :"";
+  allowedchars += includeNumbers ? numbersChars : "";
   
-  let length = prompt("choose a lenght between 8 to 15 charecters")
-  if (length <= 7){
-  alert("must be greater than 7")
-  return
+  let length = parseInt(prompt("Choose a length between 8 to 15 characters"));
+
+  if (isNaN(length) || length < 8 || length > 15) {
+    alert("Password length must be between 8 and 15 characters");
+    return ""; 
   }
 
-  for(let i = 0; i < length; i++){
-    var randomIndex =  Math.floor(Math.random() * allowedchars.length);
+  for (let i = 0; i < length; i++) {
+    var randomIndex = Math.floor(Math.random() * allowedchars.length);
     password += allowedchars[randomIndex];
   }
   console.log(`Generated password: ${password}`);
  
-  let Uppercase = (confirm ("Press ok to use Uppercase") == true);
-  let lowrcase = (confirm("Press ok to us lowercase") == true);
-
   return password;
-  
 }
-
-
-
-
-
-const passwordLength = 15;
-const includeLowercase = true;
-const includeUppercase = true;
-const includeNumbers = true;
-const includeSymbols = true;
-
-//var password = generatePassword(length, includeLowercase, includeUppercase, includeUppercase, includeSymbols);
-
-
-
-
-
-
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
@@ -63,8 +41,8 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
